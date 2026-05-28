@@ -21,23 +21,14 @@ function GroupCard({ group }) {
             display: 'block'
         },
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "fb-card group-card",
+            className: "fb-card group-card hover-lift",
             style: {
                 display: 'flex',
                 flexDirection: 'column',
                 cursor: 'pointer',
-                transition: 'transform 0.15s, box-shadow 0.15s',
                 background: 'var(--fb-surface)',
                 borderRadius: '12px',
                 overflow: 'hidden'
-            },
-            onMouseEnter: (e)=>{
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.4)';
-            },
-            onMouseLeave: (e)=>{
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'var(--fb-shadow)';
             },
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -58,7 +49,7 @@ function GroupCard({ group }) {
                             }
                         }, void 0, false, {
                             fileName: "[project]/components/GroupCard.jsx",
-                            lineNumber: 42,
+                            lineNumber: 32,
                             columnNumber: 25
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             style: {
@@ -78,12 +69,12 @@ function GroupCard({ group }) {
                                 children: initials
                             }, void 0, false, {
                                 fileName: "[project]/components/GroupCard.jsx",
-                                lineNumber: 55,
+                                lineNumber: 45,
                                 columnNumber: 29
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/GroupCard.jsx",
-                            lineNumber: 48,
+                            lineNumber: 38,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -105,13 +96,13 @@ function GroupCard({ group }) {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/GroupCard.jsx",
-                            lineNumber: 67,
+                            lineNumber: 57,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/GroupCard.jsx",
-                    lineNumber: 35,
+                    lineNumber: 25,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -132,7 +123,7 @@ function GroupCard({ group }) {
                             children: group.name
                         }, void 0, false, {
                             fileName: "[project]/components/GroupCard.jsx",
-                            lineNumber: 85,
+                            lineNumber: 75,
                             columnNumber: 21
                         }, this),
                         group.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -149,7 +140,7 @@ function GroupCard({ group }) {
                             children: group.description
                         }, void 0, false, {
                             fileName: "[project]/components/GroupCard.jsx",
-                            lineNumber: 98,
+                            lineNumber: 88,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -174,7 +165,7 @@ function GroupCard({ group }) {
                                     children: group.inviteCode
                                 }, void 0, false, {
                                     fileName: "[project]/components/GroupCard.jsx",
-                                    lineNumber: 120,
+                                    lineNumber: 110,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -186,19 +177,19 @@ function GroupCard({ group }) {
                                     children: "View →"
                                 }, void 0, false, {
                                     fileName: "[project]/components/GroupCard.jsx",
-                                    lineNumber: 130,
+                                    lineNumber: 120,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/GroupCard.jsx",
-                            lineNumber: 112,
+                            lineNumber: 102,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/GroupCard.jsx",
-                    lineNumber: 84,
+                    lineNumber: 74,
                     columnNumber: 17
                 }, this)
             ]
@@ -343,57 +334,176 @@ function DashboardPage() {
     };
     if (loading || fetching) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            style: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                minHeight: '60vh'
-            },
-            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                style: {
-                    textAlign: 'center'
-                },
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        style: {
-                            width: '40px',
-                            height: '40px',
-                            border: '3px solid var(--fb-blue)',
-                            borderTopColor: 'transparent',
-                            borderRadius: '50%',
-                            animation: 'spin 0.8s linear infinite',
-                            margin: '0 auto 1rem'
-                        }
-                    }, void 0, false, {
-                        fileName: "[project]/app/dashboard/page.jsx",
-                        lineNumber: 70,
-                        columnNumber: 21
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        style: {
-                            color: 'var(--fb-text-secondary)',
-                            margin: 0
-                        },
-                        children: "Loading your groups…"
-                    }, void 0, false, {
-                        fileName: "[project]/app/dashboard/page.jsx",
-                        lineNumber: 78,
-                        columnNumber: 21
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("style", {
-                        children: `@keyframes spin { to { transform: rotate(360deg); } }`
-                    }, void 0, false, {
-                        fileName: "[project]/app/dashboard/page.jsx",
-                        lineNumber: 79,
-                        columnNumber: 21
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/app/dashboard/page.jsx",
-                lineNumber: 69,
-                columnNumber: 17
-            }, this)
-        }, void 0, false, {
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    style: {
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 1fr',
+                        gap: '0.75rem',
+                        marginBottom: '1.25rem'
+                    },
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "skeleton",
+                            style: {
+                                height: '72px',
+                                borderRadius: '12px'
+                            }
+                        }, void 0, false, {
+                            fileName: "[project]/app/dashboard/page.jsx",
+                            lineNumber: 70,
+                            columnNumber: 21
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "skeleton",
+                            style: {
+                                height: '72px',
+                                borderRadius: '12px'
+                            }
+                        }, void 0, false, {
+                            fileName: "[project]/app/dashboard/page.jsx",
+                            lineNumber: 71,
+                            columnNumber: 21
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/app/dashboard/page.jsx",
+                    lineNumber: 69,
+                    columnNumber: 17
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "skeleton",
+                    style: {
+                        height: '14px',
+                        width: '130px',
+                        marginBottom: '0.75rem'
+                    }
+                }, void 0, false, {
+                    fileName: "[project]/app/dashboard/page.jsx",
+                    lineNumber: 73,
+                    columnNumber: 17
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    style: {
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                        gap: '0.75rem'
+                    },
+                    children: [
+                        1,
+                        2,
+                        3
+                    ].map((i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "fb-card",
+                            style: {
+                                overflow: 'hidden'
+                            },
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "skeleton",
+                                    style: {
+                                        height: '140px',
+                                        borderRadius: 0
+                                    }
+                                }, void 0, false, {
+                                    fileName: "[project]/app/dashboard/page.jsx",
+                                    lineNumber: 77,
+                                    columnNumber: 29
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    style: {
+                                        padding: '0.875rem 1rem 1rem'
+                                    },
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "skeleton",
+                                            style: {
+                                                height: '14px',
+                                                width: '60%',
+                                                marginBottom: '0.5rem'
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/dashboard/page.jsx",
+                                            lineNumber: 79,
+                                            columnNumber: 33
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "skeleton",
+                                            style: {
+                                                height: '11px',
+                                                width: '80%',
+                                                marginBottom: '0.35rem'
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/dashboard/page.jsx",
+                                            lineNumber: 80,
+                                            columnNumber: 33
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "skeleton",
+                                            style: {
+                                                height: '11px',
+                                                width: '50%',
+                                                marginBottom: '0.875rem'
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/dashboard/page.jsx",
+                                            lineNumber: 81,
+                                            columnNumber: 33
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            style: {
+                                                display: 'flex',
+                                                justifyContent: 'space-between'
+                                            },
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "skeleton",
+                                                    style: {
+                                                        height: '18px',
+                                                        width: '35%'
+                                                    }
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/dashboard/page.jsx",
+                                                    lineNumber: 83,
+                                                    columnNumber: 37
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "skeleton",
+                                                    style: {
+                                                        height: '18px',
+                                                        width: '15%'
+                                                    }
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/dashboard/page.jsx",
+                                                    lineNumber: 84,
+                                                    columnNumber: 37
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/dashboard/page.jsx",
+                                            lineNumber: 82,
+                                            columnNumber: 33
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/dashboard/page.jsx",
+                                    lineNumber: 78,
+                                    columnNumber: 29
+                                }, this)
+                            ]
+                        }, i, true, {
+                            fileName: "[project]/app/dashboard/page.jsx",
+                            lineNumber: 76,
+                            columnNumber: 25
+                        }, this))
+                }, void 0, false, {
+                    fileName: "[project]/app/dashboard/page.jsx",
+                    lineNumber: 74,
+                    columnNumber: 17
+                }, this)
+            ]
+        }, void 0, true, {
             fileName: "[project]/app/dashboard/page.jsx",
             lineNumber: 68,
             columnNumber: 13
@@ -415,6 +525,7 @@ function DashboardPage() {
                             textDecoration: 'none'
                         },
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "hover-surface",
                             style: {
                                 background: 'var(--fb-surface)',
                                 borderRadius: '12px',
@@ -423,11 +534,8 @@ function DashboardPage() {
                                 alignItems: 'center',
                                 gap: '0.75rem',
                                 cursor: 'pointer',
-                                transition: 'background 0.15s',
                                 boxShadow: 'var(--fb-shadow)'
                             },
-                            onMouseEnter: (e)=>e.currentTarget.style.background = 'var(--fb-surface2)',
-                            onMouseLeave: (e)=>e.currentTarget.style.background = 'var(--fb-surface)',
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     style: {
@@ -443,12 +551,12 @@ function DashboardPage() {
                                     },
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(PlusIcon, {}, void 0, false, {
                                         fileName: "[project]/app/dashboard/page.jsx",
-                                        lineNumber: 115,
+                                        lineNumber: 120,
                                         columnNumber: 29
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/page.jsx",
-                                    lineNumber: 109,
+                                    lineNumber: 114,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -463,7 +571,7 @@ function DashboardPage() {
                                             children: "New Group"
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/page.jsx",
-                                            lineNumber: 118,
+                                            lineNumber: 123,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -475,24 +583,24 @@ function DashboardPage() {
                                             children: "Create a space"
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/page.jsx",
-                                            lineNumber: 119,
+                                            lineNumber: 124,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/dashboard/page.jsx",
-                                    lineNumber: 117,
+                                    lineNumber: 122,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/page.jsx",
-                            lineNumber: 95,
+                            lineNumber: 104,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.jsx",
-                        lineNumber: 94,
+                        lineNumber: 103,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -520,12 +628,12 @@ function DashboardPage() {
                                 },
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(KeyIcon, {}, void 0, false, {
                                     fileName: "[project]/app/dashboard/page.jsx",
-                                    lineNumber: 141,
+                                    lineNumber: 146,
                                     columnNumber: 25
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.jsx",
-                                lineNumber: 135,
+                                lineNumber: 140,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -544,7 +652,7 @@ function DashboardPage() {
                                         children: "Join Group"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/page.jsx",
-                                        lineNumber: 144,
+                                        lineNumber: 149,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -573,7 +681,7 @@ function DashboardPage() {
                                                 }
                                             }, void 0, false, {
                                                 fileName: "[project]/app/dashboard/page.jsx",
-                                                lineNumber: 146,
+                                                lineNumber: 151,
                                                 columnNumber: 29
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -594,13 +702,13 @@ function DashboardPage() {
                                                 children: joinLoading ? '…' : 'Join'
                                             }, void 0, false, {
                                                 fileName: "[project]/app/dashboard/page.jsx",
-                                                lineNumber: 164,
+                                                lineNumber: 169,
                                                 columnNumber: 29
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/dashboard/page.jsx",
-                                        lineNumber: 145,
+                                        lineNumber: 150,
                                         columnNumber: 25
                                     }, this),
                                     joinError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -612,25 +720,25 @@ function DashboardPage() {
                                         children: joinError
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/page.jsx",
-                                        lineNumber: 179,
+                                        lineNumber: 184,
                                         columnNumber: 39
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/page.jsx",
-                                lineNumber: 143,
+                                lineNumber: 148,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/page.jsx",
-                        lineNumber: 124,
+                        lineNumber: 129,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/page.jsx",
-                lineNumber: 88,
+                lineNumber: 97,
                 columnNumber: 13
             }, this),
             groups.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -648,7 +756,7 @@ function DashboardPage() {
                         children: "👥"
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.jsx",
-                        lineNumber: 187,
+                        lineNumber: 192,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -661,7 +769,7 @@ function DashboardPage() {
                         children: "No groups yet"
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.jsx",
-                        lineNumber: 188,
+                        lineNumber: 193,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -673,7 +781,7 @@ function DashboardPage() {
                         children: "Create a group or join one with an invite code."
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.jsx",
-                        lineNumber: 191,
+                        lineNumber: 196,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -692,13 +800,13 @@ function DashboardPage() {
                         children: "Create your first group"
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.jsx",
-                        lineNumber: 194,
+                        lineNumber: 199,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/page.jsx",
-                lineNumber: 186,
+                lineNumber: 191,
                 columnNumber: 17
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                 children: [
@@ -719,7 +827,7 @@ function DashboardPage() {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/page.jsx",
-                        lineNumber: 210,
+                        lineNumber: 215,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -732,12 +840,12 @@ function DashboardPage() {
                                 group: group
                             }, group._id, false, {
                                 fileName: "[project]/app/dashboard/page.jsx",
-                                lineNumber: 219,
+                                lineNumber: 224,
                                 columnNumber: 29
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.jsx",
-                        lineNumber: 213,
+                        lineNumber: 218,
                         columnNumber: 21
                     }, this)
                 ]
@@ -745,7 +853,7 @@ function DashboardPage() {
         ]
     }, void 0, true, {
         fileName: "[project]/app/dashboard/page.jsx",
-        lineNumber: 86,
+        lineNumber: 95,
         columnNumber: 9
     }, this);
 }

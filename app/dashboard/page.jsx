@@ -65,18 +65,27 @@ export default function DashboardPage() {
 
     if (loading || fetching) {
         return (
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh' }}>
-                <div style={{ textAlign: 'center' }}>
-                    <div style={{
-                        width: '40px', height: '40px',
-                        border: '3px solid var(--fb-blue)',
-                        borderTopColor: 'transparent',
-                        borderRadius: '50%',
-                        animation: 'spin 0.8s linear infinite',
-                        margin: '0 auto 1rem',
-                    }} />
-                    <p style={{ color: 'var(--fb-text-secondary)', margin: 0 }}>Loading your groups…</p>
-                    <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+            <div>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginBottom: '1.25rem' }}>
+                    <div className="skeleton" style={{ height: '72px', borderRadius: '12px' }} />
+                    <div className="skeleton" style={{ height: '72px', borderRadius: '12px' }} />
+                </div>
+                <div className="skeleton" style={{ height: '14px', width: '130px', marginBottom: '0.75rem' }} />
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '0.75rem' }}>
+                    {[1, 2, 3].map(i => (
+                        <div key={i} className="fb-card" style={{ overflow: 'hidden' }}>
+                            <div className="skeleton" style={{ height: '140px', borderRadius: 0 }} />
+                            <div style={{ padding: '0.875rem 1rem 1rem' }}>
+                                <div className="skeleton" style={{ height: '14px', width: '60%', marginBottom: '0.5rem' }} />
+                                <div className="skeleton" style={{ height: '11px', width: '80%', marginBottom: '0.35rem' }} />
+                                <div className="skeleton" style={{ height: '11px', width: '50%', marginBottom: '0.875rem' }} />
+                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <div className="skeleton" style={{ height: '18px', width: '35%' }} />
+                                    <div className="skeleton" style={{ height: '18px', width: '15%' }} />
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
         );
@@ -92,7 +101,7 @@ export default function DashboardPage() {
                 marginBottom: '1.25rem',
             }}>
                 <Link href="/groups/create" style={{ textDecoration: 'none' }}>
-                    <div style={{
+                    <div className="hover-surface" style={{
                         background: 'var(--fb-surface)',
                         borderRadius: '12px',
                         padding: '1rem',
@@ -100,12 +109,8 @@ export default function DashboardPage() {
                         alignItems: 'center',
                         gap: '0.75rem',
                         cursor: 'pointer',
-                        transition: 'background 0.15s',
                         boxShadow: 'var(--fb-shadow)',
-                    }}
-                        onMouseEnter={e => e.currentTarget.style.background = 'var(--fb-surface2)'}
-                        onMouseLeave={e => e.currentTarget.style.background = 'var(--fb-surface)'}
-                    >
+                    }}>
                         <div style={{
                             width: '40px', height: '40px', borderRadius: '50%',
                             background: 'var(--fb-blue)',

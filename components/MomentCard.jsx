@@ -42,6 +42,7 @@ export default function MomentCard({ moment, currentUserId, onLikeToggle, onComm
     const [submittingComment, setSubmittingComment] = useState(false);
     const [likePending, setLikePending] = useState(false);
     const [showComments, setShowComments] = useState(false);
+    const [likeAnimating, setLikeAnimating] = useState(false);
 
     const isLiked = moment.likes?.some((id) => id === currentUserId || id?._id === currentUserId);
     const likeCount = moment.likes?.length || 0;
@@ -52,6 +53,10 @@ export default function MomentCard({ moment, currentUserId, onLikeToggle, onComm
     const handleLike = async () => {
         if (likePending) return;
         setLikePending(true);
+        if (!isLiked) {
+            setLikeAnimating(true);
+            setTimeout(() => setLikeAnimating(false), 400);
+        }
         try {
             const res = await fetch(`/api/moments/${moment._id}/like`, { method: 'POST' });
             const data = await res.json();
@@ -200,7 +205,9 @@ export default function MomentCard({ moment, currentUserId, onLikeToggle, onComm
                     className={`fb-action-btn${isLiked ? ' liked' : ''}`}
                     style={{ color: isLiked ? 'var(--fb-blue)' : undefined }}
                 >
-                    <ThumbsUp filled={isLiked} />
+                    <span className={likeAnimating ? 'like-bounce' : ''}>
+                        <ThumbsUp filled={isLiked} />
+                    </span>
                     <span>{isLiked ? 'Liked' : 'Like'}</span>
                 </button>
 
@@ -275,6 +282,7 @@ export default function MomentCard({ moment, currentUserId, onLikeToggle, onComm
                         placeholder="Write a comment..."
                         value={commentText}
                         onChange={(e) => setCommentText(e.target.value)}
+                        className="comment-input"
                         style={{
                             flex: 1,
                             background: 'var(--fb-surface2)',
@@ -287,8 +295,6 @@ export default function MomentCard({ moment, currentUserId, onLikeToggle, onComm
                             transition: 'border-color 0.15s',
                             fontFamily: 'inherit',
                         }}
-                        onFocus={e => { e.target.style.borderColor = 'var(--fb-blue)'; }}
-                        onBlur={e => { e.target.style.borderColor = 'transparent'; }}
                     />
                     {commentText.trim() && (
                         <button

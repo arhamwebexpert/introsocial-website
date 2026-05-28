@@ -164,3 +164,168 @@ body {
 .fb-action-btn.liked {
   color: #1877f2;
 }
+
+/* ─── Keyframe Animations ─── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes likeBounce {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.4); }
+  70%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+@keyframes slideInMsg {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(calc(100% + 1.5rem)); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ─── Skeleton Loader ─── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--fb-surface2) 25%,
+    var(--fb-surface3) 50%,
+    var(--fb-surface2) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+/* ─── Page Enter Transition ─── */
+.page-enter {
+  animation: fadeInUp 0.22s ease-out;
+}
+
+/* ─── Chat Message Slide-In ─── */
+.chat-msg-enter {
+  animation: slideInMsg 0.2s ease-out;
+}
+
+/* ─── Like Bounce ─── */
+.like-bounce {
+  animation: likeBounce 0.35s ease forwards;
+  display: inline-flex;
+}
+
+/* ─── CSS Hover Utilities (replace onMouseEnter/Leave) ─── */
+.hover-surface {
+  transition: background 0.15s, color 0.15s;
+}
+.hover-surface:hover {
+  background: var(--fb-surface2) !important;
+}
+
+.hover-surface2 {
+  transition: background 0.15s, color 0.15s;
+}
+.hover-surface2:hover {
+  background: var(--fb-surface3) !important;
+  color: var(--fb-text) !important;
+}
+
+.hover-lift {
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+.hover-lift:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+.hover-blue {
+  transition: color 0.15s;
+}
+.hover-blue:hover {
+  color: var(--fb-blue) !important;
+}
+
+.hover-red {
+  transition: background 0.15s, color 0.15s;
+}
+.hover-red:hover {
+  background: var(--fb-red) !important;
+  color: #fff !important;
+}
+
+.hover-btn-blue {
+  transition: background 0.15s;
+}
+.hover-btn-blue:hover {
+  background: var(--fb-blue-hover) !important;
+}
+
+/* ─── Navbar Tab Hover ─── */
+.nav-tab {
+  transition: background 0.15s;
+}
+.nav-tab:not(.nav-tab-active):hover {
+  background: var(--fb-hover) !important;
+}
+
+/* ─── Chat-specific Hover Utilities ─── */
+.hover-chat-link {
+  transition: background 0.2s, color 0.2s;
+}
+.hover-chat-link:hover {
+  background: #3a3f48 !important;
+  color: #e4e6eb !important;
+}
+
+.hover-chat-action {
+  transition: background 0.2s, color 0.2s;
+}
+.hover-chat-action:hover {
+  background: #2a2f38 !important;
+  color: #1877f2 !important;
+}
+
+.hover-chat-promote {
+  transition: background 0.2s, color 0.2s;
+}
+.hover-chat-promote:hover {
+  background: #2a2f38 !important;
+  color: #25d366 !important;
+}
+
+/* ─── Input Focus via CSS (replace onFocus/onBlur handlers) ─── */
+.chat-text-input:focus {
+  background: #3a3f48 !important;
+  border-color: #1877f2 !important;
+}
+
+.comment-input:focus {
+  border-color: var(--fb-blue) !important;
+}
+
+/* ─── Button Active Press ─── */
+.btn-primary:active:not(:disabled),
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* ─── Scale hover for send button ─── */
+.hover-scale {
+  transition: transform 0.2s;
+}
+.hover-scale:hover {
+  transform: scale(1.05) !important;
+}

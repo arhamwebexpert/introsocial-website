@@ -91,10 +91,7 @@ export default function EventsPage() {
             {/* Header */}
             <div className="fb-card" style={{ marginBottom: '0.75rem', padding: '0.875rem 1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
                 <div>
-                    <Link href={`/groups/${groupId}/chat`} style={{ color: 'var(--fb-text-secondary)', textDecoration: 'none', fontSize: '0.875rem', fontWeight: '500', transition: 'color 0.15s' }}
-                        onMouseEnter={e => e.currentTarget.style.color = 'var(--fb-text)'}
-                        onMouseLeave={e => e.currentTarget.style.color = 'var(--fb-text-secondary)'}
-                    >
+                    <Link href={`/groups/${groupId}/chat`} className="hover-blue" style={{ color: 'var(--fb-text-secondary)', textDecoration: 'none', fontSize: '0.875rem', fontWeight: '500' }}>
                         ← Back to Chat
                     </Link>
                     <h1 style={{ margin: '0.25rem 0 0.125rem', fontSize: '1.25rem', fontWeight: '800', color: 'var(--fb-text)' }}>Events</h1>
@@ -181,7 +178,7 @@ export default function EventsPage() {
                                 <div style={{ display: 'flex', gap: '0.5rem', borderTop: '1px solid var(--fb-border)', paddingTop: '0.75rem' }}>
                                     <button
                                         onClick={() => handleJoinChat(event._id)}
-                                        className="fb-action-btn"
+                                        className="fb-action-btn hover-btn-blue"
                                         style={{
                                             flex: 1,
                                             fontSize: '0.875rem',
@@ -192,16 +189,13 @@ export default function EventsPage() {
                                             border: 'none',
                                             borderRadius: '8px',
                                             cursor: 'pointer',
-                                            transition: 'background 0.15s',
                                         }}
-                                        onMouseEnter={e => e.currentTarget.style.background = 'var(--fb-blue-hover)'}
-                                        onMouseLeave={e => e.currentTarget.style.background = 'var(--fb-blue)'}
                                     >
                                         💬 Join Chat
                                     </button>
                                     <button
                                         onClick={() => handleSummarize(event._id)}
-                                        className="fb-action-btn"
+                                        className="fb-action-btn hover-surface2"
                                         style={{
                                             flex: 1,
                                             fontSize: '0.875rem',
@@ -212,16 +206,13 @@ export default function EventsPage() {
                                             border: '1px solid var(--fb-border)',
                                             borderRadius: '8px',
                                             cursor: 'pointer',
-                                            transition: 'background 0.15s, color 0.15s',
                                         }}
-                                        onMouseEnter={e => { e.currentTarget.style.background = 'var(--fb-surface3)'; e.currentTarget.style.color = 'var(--fb-text)'; }}
-                                        onMouseLeave={e => { e.currentTarget.style.background = summaries[event._id] ? 'var(--fb-surface3)' : 'var(--fb-surface2)'; e.currentTarget.style.color = 'var(--fb-text-secondary)'; }}
                                     >
                                         📝 {summaries[event._id] ? 'Hide Summary' : 'Summarize'}
                                     </button>
                                     <button
                                         onClick={() => handleEndEvent(event._id)}
-                                        className="fb-action-btn"
+                                        className="fb-action-btn hover-red"
                                         style={{
                                             fontSize: '0.875rem',
                                             fontWeight: '600',
@@ -231,10 +222,7 @@ export default function EventsPage() {
                                             border: '1px solid var(--fb-border)',
                                             borderRadius: '8px',
                                             cursor: 'pointer',
-                                            transition: 'background 0.15s, color 0.15s',
                                         }}
-                                        onMouseEnter={e => { e.currentTarget.style.background = 'var(--fb-red)'; e.currentTarget.style.color = '#fff'; }}
-                                        onMouseLeave={e => { e.currentTarget.style.background = 'var(--fb-surface2)'; e.currentTarget.style.color = 'var(--fb-red)'; }}
                                     >
                                         🔚 End Event
                                     </button>

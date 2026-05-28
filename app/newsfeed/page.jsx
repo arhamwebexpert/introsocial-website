@@ -46,19 +46,28 @@ export default function NewsFeedPage() {
 
     if (loading || fetching) {
         return (
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh' }}>
-                <div style={{ textAlign: 'center' }}>
-                    <div style={{
-                        width: '40px', height: '40px',
-                        border: '3px solid var(--fb-blue)',
-                        borderTopColor: 'transparent',
-                        borderRadius: '50%',
-                        animation: 'spin 0.8s linear infinite',
-                        margin: '0 auto 1rem',
-                    }} />
-                    <p style={{ color: 'var(--fb-text-secondary)', margin: 0 }}>Loading News Feed…</p>
-                    <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-                </div>
+            <div style={{ maxWidth: '700px', margin: '0 auto' }}>
+                <div className="skeleton" style={{ height: '72px', borderRadius: '12px', marginBottom: '0.75rem' }} />
+                {[1, 2].map(i => (
+                    <div key={i} className="fb-card" style={{ marginBottom: '0.75rem', overflow: 'hidden' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.875rem 1rem 0.5rem' }}>
+                            <div className="skeleton" style={{ width: '40px', height: '40px', borderRadius: '50%', flexShrink: 0 }} />
+                            <div style={{ flex: 1 }}>
+                                <div className="skeleton" style={{ height: '13px', width: '35%', marginBottom: '0.4rem' }} />
+                                <div className="skeleton" style={{ height: '11px', width: '20%' }} />
+                            </div>
+                        </div>
+                        <div style={{ padding: '0 1rem 0.5rem' }}>
+                            <div className="skeleton" style={{ height: '13px', width: '85%', marginBottom: '0.35rem' }} />
+                            <div className="skeleton" style={{ height: '13px', width: '60%' }} />
+                        </div>
+                        <div className="skeleton" style={{ height: '260px', borderRadius: 0 }} />
+                        <div style={{ display: 'flex', padding: '0.5rem', gap: '0.25rem' }}>
+                            <div className="skeleton" style={{ height: '40px', flex: 1, borderRadius: '8px' }} />
+                            <div className="skeleton" style={{ height: '40px', flex: 1, borderRadius: '8px' }} />
+                        </div>
+                    </div>
+                ))}
             </div>
         );
     }

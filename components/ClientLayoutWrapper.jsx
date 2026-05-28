@@ -27,7 +27,11 @@ export default function ClientLayoutWrapper({ children }) {
                     }}
                     className={isInGroup ? '' : 'fb-main-content'}
                 >
-                    {children}
+                    {!isInGroup ? (
+                        <div key={pathname} className="page-enter">
+                            {children}
+                        </div>
+                    ) : children}
                 </div>
             </main>
             {!isInGroup && <div className="mobile-bottom-spacer" />}

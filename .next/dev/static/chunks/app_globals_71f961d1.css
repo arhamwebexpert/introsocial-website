@@ -10,6 +10,7 @@
       --tw-skew-y: initial;
       --tw-border-style: solid;
       --tw-outline-style: solid;
+      --tw-ease: initial;
     }
   }
 }
@@ -19,6 +20,7 @@
     --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --spacing: .25rem;
+    --ease-out: cubic-bezier(0, 0, .2, 1);
     --default-transition-duration: .15s;
     --default-transition-timing-function: cubic-bezier(.4, 0, .2, 1);
     --default-font-family: var(--font-sans);
@@ -362,6 +364,11 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
+
+  .ease-out {
+    --tw-ease: var(--ease-out);
+    transition-timing-function: var(--ease-out);
+  }
 }
 
 :root {
@@ -513,6 +520,204 @@ html, body {
   color: #1877f2;
 }
 
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes likeBounce {
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.4);
+  }
+
+  70% {
+    transform: scale(.9);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInMsg {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateX(calc(100% + 1.5rem));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--fb-surface2) 25%, var(--fb-surface3) 50%, var(--fb-surface2) 75%);
+  pointer-events: none;
+  background-size: 200% 100%;
+  border-radius: 8px;
+  animation: 1.4s ease-in-out infinite shimmer;
+}
+
+.page-enter {
+  animation: .22s ease-out fadeInUp;
+}
+
+.chat-msg-enter {
+  animation: .2s ease-out slideInMsg;
+}
+
+.like-bounce {
+  animation: .35s forwards likeBounce;
+  display: inline-flex;
+}
+
+.hover-surface {
+  transition: background .15s, color .15s;
+}
+
+.hover-surface:hover {
+  background: var(--fb-surface2) !important;
+}
+
+.hover-surface2 {
+  transition: background .15s, color .15s;
+}
+
+.hover-surface2:hover {
+  background: var(--fb-surface3) !important;
+  color: var(--fb-text) !important;
+}
+
+.hover-lift {
+  transition: transform .15s ease-out, box-shadow .15s ease-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 16px #0006 !important;
+}
+
+.hover-blue {
+  transition: color .15s;
+}
+
+.hover-blue:hover {
+  color: var(--fb-blue) !important;
+}
+
+.hover-red {
+  transition: background .15s, color .15s;
+}
+
+.hover-red:hover {
+  background: var(--fb-red) !important;
+  color: #fff !important;
+}
+
+.hover-btn-blue {
+  transition: background .15s;
+}
+
+.hover-btn-blue:hover {
+  background: var(--fb-blue-hover) !important;
+}
+
+.nav-tab {
+  transition: background .15s;
+}
+
+.nav-tab:not(.nav-tab-active):hover {
+  background: var(--fb-hover) !important;
+}
+
+.hover-chat-link {
+  transition: background .2s, color .2s;
+}
+
+.hover-chat-link:hover {
+  color: #e4e6eb !important;
+  background: #3a3f48 !important;
+}
+
+.hover-chat-action {
+  transition: background .2s, color .2s;
+}
+
+.hover-chat-action:hover {
+  color: #1877f2 !important;
+  background: #2a2f38 !important;
+}
+
+.hover-chat-promote {
+  transition: background .2s, color .2s;
+}
+
+.hover-chat-promote:hover {
+  color: #25d366 !important;
+  background: #2a2f38 !important;
+}
+
+.chat-text-input:focus {
+  background: #3a3f48 !important;
+  border-color: #1877f2 !important;
+}
+
+.comment-input:focus {
+  border-color: var(--fb-blue) !important;
+}
+
+.btn-primary:active:not(:disabled), .btn-secondary:active {
+  transform: scale(.98);
+}
+
+.hover-scale {
+  transition: transform .2s;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05) !important;
+}
+
 @property --tw-rotate-x {
   syntax: "*";
   inherits: false
@@ -548,6 +753,11 @@ html, body {
   syntax: "*";
   inherits: false;
   initial-value: solid;
+}
+
+@property --tw-ease {
+  syntax: "*";
+  inherits: false
 }
 
 /*# sourceMappingURL=app_globals_71f961d1.css.map*/

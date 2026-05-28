@@ -74,7 +74,7 @@ const CameraIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$proj
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 _c1 = CameraIcon;
-function CreateMomentPage() {
+function CreateMomentContent() {
     _s();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const searchParams = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSearchParams"])();
@@ -89,11 +89,11 @@ function CreateMomentPage() {
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
     const [isDragging, setIsDragging] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "CreateMomentPage.useEffect": ()=>{
+        "CreateMomentContent.useEffect": ()=>{
             if (!loading && !user) router.push('/login');
             if (!loading && !groupId) router.push('/dashboard');
         }
-    }["CreateMomentPage.useEffect"], [
+    }["CreateMomentContent.useEffect"], [
         user,
         loading,
         groupId
@@ -147,7 +147,7 @@ function CreateMomentPage() {
                 setError(data.error || 'Failed to post moment');
                 return;
             }
-            router.push(`/groups/${groupId}`);
+            router.push(`/groups/${groupId}/chat`);
         } catch (err) {
             setError(err.message || 'Something went wrong');
         } finally{
@@ -159,7 +159,7 @@ function CreateMomentPage() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                href: groupId ? `/groups/${groupId}` : '/dashboard',
+                href: groupId ? `/groups/${groupId}/chat` : '/dashboard',
                 style: {
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -660,18 +660,82 @@ function CreateMomentPage() {
         columnNumber: 9
     }, this);
 }
-_s(CreateMomentPage, "ohV5+RZ3pNm7wMgqF/BKdcFGUHk=", false, function() {
+_s(CreateMomentContent, "ohV5+RZ3pNm7wMgqF/BKdcFGUHk=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSearchParams"],
         __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$useAuth$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuth"]
     ];
 });
-_c2 = CreateMomentPage;
-var _c, _c1, _c2;
+_c2 = CreateMomentContent;
+function CreateMomentPage() {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Suspense"], {
+        fallback: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            style: {
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minHeight: '60vh'
+            },
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                style: {
+                    textAlign: 'center'
+                },
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        style: {
+                            width: '40px',
+                            height: '40px',
+                            border: '3px solid var(--fb-blue)',
+                            borderTopColor: 'transparent',
+                            borderRadius: '50%',
+                            animation: 'spin 0.8s linear infinite',
+                            margin: '0 auto 1rem'
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/app/moments/create/page.jsx",
+                        lineNumber: 301,
+                        columnNumber: 21
+                    }, void 0),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        style: {
+                            color: 'var(--fb-text-secondary)',
+                            margin: 0
+                        },
+                        children: "Loading…"
+                    }, void 0, false, {
+                        fileName: "[project]/app/moments/create/page.jsx",
+                        lineNumber: 309,
+                        columnNumber: 21
+                    }, void 0)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/moments/create/page.jsx",
+                lineNumber: 300,
+                columnNumber: 17
+            }, void 0)
+        }, void 0, false, {
+            fileName: "[project]/app/moments/create/page.jsx",
+            lineNumber: 299,
+            columnNumber: 13
+        }, void 0),
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CreateMomentContent, {}, void 0, false, {
+            fileName: "[project]/app/moments/create/page.jsx",
+            lineNumber: 313,
+            columnNumber: 13
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/app/moments/create/page.jsx",
+        lineNumber: 298,
+        columnNumber: 9
+    }, this);
+}
+_c3 = CreateMomentPage;
+var _c, _c1, _c2, _c3;
 __turbopack_context__.k.register(_c, "BackIcon");
 __turbopack_context__.k.register(_c1, "CameraIcon");
-__turbopack_context__.k.register(_c2, "CreateMomentPage");
+__turbopack_context__.k.register(_c2, "CreateMomentContent");
+__turbopack_context__.k.register(_c3, "CreateMomentPage");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }

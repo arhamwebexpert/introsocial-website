@@ -142,7 +142,7 @@ export default function ChatPage() {
                     boxShadow: '0 1px 2px rgba(0,0,0,0.3)',
                 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                        <Link href="/dashboard" style={{
+                        <Link href="/dashboard" className="hover-blue" style={{
                             color: 'var(--fb-text-secondary)',
                             textDecoration: 'none',
                             fontSize: '1.5rem',
@@ -150,10 +150,7 @@ export default function ChatPage() {
                             display: 'flex',
                             alignItems: 'center',
                             padding: '0.25rem',
-                        }}
-                            onMouseEnter={e => e.currentTarget.style.color = '#1877f2'}
-                            onMouseLeave={e => e.currentTarget.style.color = 'var(--fb-text-secondary)'}
-                        >
+                        }}>
                             ←
                         </Link>
                         <div style={{
@@ -179,6 +176,7 @@ export default function ChatPage() {
                     <div style={{ display: 'flex', gap: '0.5rem' }}>
                         <Link
                             href={`/groups/${groupId}/moments`}
+                            className="hover-chat-link"
                             style={{
                                 fontSize: '0.875rem',
                                 background: '#2a2f38',
@@ -188,15 +186,13 @@ export default function ChatPage() {
                                 textDecoration: 'none',
                                 fontWeight: '600',
                                 border: '1px solid #3a3f48',
-                                transition: 'all 0.2s',
                             }}
-                            onMouseEnter={e => { e.currentTarget.style.background = '#3a3f48'; e.currentTarget.style.color = '#e4e6eb'; }}
-                            onMouseLeave={e => { e.currentTarget.style.background = '#2a2f38'; e.currentTarget.style.color = '#8a8d91'; }}
                         >
                             📸 Moments
                         </Link>
                         <Link
                             href={`/groups/${groupId}/events`}
+                            className="hover-chat-link"
                             style={{
                                 fontSize: '0.875rem',
                                 background: '#2a2f38',
@@ -206,10 +202,7 @@ export default function ChatPage() {
                                 textDecoration: 'none',
                                 fontWeight: '600',
                                 border: '1px solid #3a3f48',
-                                transition: 'all 0.2s',
                             }}
-                            onMouseEnter={e => { e.currentTarget.style.background = '#3a3f48'; e.currentTarget.style.color = '#e4e6eb'; }}
-                            onMouseLeave={e => { e.currentTarget.style.background = '#2a2f38'; e.currentTarget.style.color = '#8a8d91'; }}
                         >
                             📅 Events
                         </Link>
@@ -246,7 +239,7 @@ export default function ChatPage() {
                                 const isThreadOpen = activeThread === msg._id;
 
                                 return (
-                                    <div key={msg._id} className="chat-msg-group">
+                                    <div key={msg._id} className="chat-msg-group chat-msg-enter">
                                         {/* Message bubble - WhatsApp style */}
                                         <div style={{
                                             display: 'flex',
@@ -384,6 +377,7 @@ export default function ChatPage() {
                                                 }}>
                                                     <button
                                                         onClick={() => setReplyToMessage(msg)}
+                                                        className="hover-chat-action"
                                                         style={{
                                                             background: '#1c1e22',
                                                             border: '1px solid #2a2f38',
@@ -393,17 +387,15 @@ export default function ChatPage() {
                                                             fontFamily: 'inherit',
                                                             padding: '0.25rem 0.625rem',
                                                             borderRadius: '12px',
-                                                            transition: 'all 0.2s',
                                                             fontWeight: '500',
                                                         }}
-                                                        onMouseEnter={e => { e.currentTarget.style.background = '#2a2f38'; e.currentTarget.style.color = '#1877f2'; }}
-                                                        onMouseLeave={e => { e.currentTarget.style.background = '#1c1e22'; e.currentTarget.style.color = '#8a8d91'; }}
                                                     >
                                                         ↪ Reply
                                                     </button>
 
                                                     <button
                                                         onClick={() => setActiveThread(msg._id)}
+                                                        className="hover-chat-action"
                                                         style={{
                                                             background: '#1c1e22',
                                                             border: '1px solid #2a2f38',
@@ -413,11 +405,8 @@ export default function ChatPage() {
                                                             fontFamily: 'inherit',
                                                             padding: '0.25rem 0.625rem',
                                                             borderRadius: '12px',
-                                                            transition: 'all 0.2s',
                                                             fontWeight: '500',
                                                         }}
-                                                        onMouseEnter={e => { e.currentTarget.style.background = '#2a2f38'; e.currentTarget.style.color = '#1877f2'; }}
-                                                        onMouseLeave={e => { e.currentTarget.style.background = '#1c1e22'; e.currentTarget.style.color = '#8a8d91'; }}
                                                     >
                                                         💬 {msg.replyCount > 0 ? `${msg.replyCount} ` : ''}Thread
                                                     </button>
@@ -425,6 +414,7 @@ export default function ChatPage() {
                                                     {!msg.promotedToEvent && (
                                                         <button
                                                             onClick={() => setPromoteTarget(msg)}
+                                                            className="hover-chat-promote"
                                                             style={{
                                                                 background: '#1c1e22',
                                                                 border: '1px solid #2a2f38',
@@ -434,11 +424,8 @@ export default function ChatPage() {
                                                                 fontFamily: 'inherit',
                                                                 padding: '0.25rem 0.625rem',
                                                                 borderRadius: '12px',
-                                                                transition: 'all 0.2s',
                                                                 fontWeight: '500',
                                                             }}
-                                                            onMouseEnter={e => { e.currentTarget.style.background = '#2a2f38'; e.currentTarget.style.color = '#25d366'; }}
-                                                            onMouseLeave={e => { e.currentTarget.style.background = '#1c1e22'; e.currentTarget.style.color = '#8a8d91'; }}
                                                         >
                                                             📅 Event
                                                         </button>
@@ -507,6 +494,7 @@ export default function ChatPage() {
                             placeholder="Type a message..."
                             value={text}
                             onChange={(e) => setText(e.target.value)}
+                            className="chat-text-input"
                             style={{
                                 flex: 1,
                                 borderRadius: '24px',
@@ -517,10 +505,8 @@ export default function ChatPage() {
                                 border: '1px solid #3a3f48',
                                 color: '#e4e6eb',
                                 outline: 'none',
-                                transition: 'all 0.2s',
+                                transition: 'background 0.2s, border-color 0.2s',
                             }}
-                            onFocus={(e) => { e.target.style.background = '#3a3f48'; e.target.style.borderColor = '#1877f2'; }}
-                            onBlur={(e) => { e.target.style.background = '#2a2f38'; e.target.style.borderColor = '#3a3f48'; }}
                         />
                         <button
                             type="submit"
@@ -542,8 +528,7 @@ export default function ChatPage() {
                                 boxShadow: text.trim() ? '0 2px 8px rgba(24, 119, 242, 0.4)' : 'none',
                                 opacity: text.trim() ? 1 : 0.5,
                             }}
-                            onMouseEnter={(e) => { if (text.trim()) e.currentTarget.style.transform = 'scale(1.05)'; }}
-                            onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
+                            className="hover-scale"
                         >
                             {sending ? '...' : '➤'}
                         </button>

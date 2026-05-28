@@ -84,7 +84,7 @@ export default function GroupMomentsPage({ params }) {
             {/* Header */}
             <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                    <Link href={`/groups/${groupId}/chat`} style={{
+                    <Link href={`/groups/${groupId}/chat`} className="hover-surface" style={{
                         color: 'var(--fb-text)',
                         textDecoration: 'none',
                         background: 'var(--fb-surface2)',
@@ -94,11 +94,7 @@ export default function GroupMomentsPage({ params }) {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        transition: 'background 0.2s',
-                    }}
-                        onMouseEnter={e => e.currentTarget.style.background = 'var(--fb-hover)'}
-                        onMouseLeave={e => e.currentTarget.style.background = 'var(--fb-surface2)'}
-                    >
+                    }}>
                         <BackIcon />
                     </Link>
                     <h1 style={{ margin: 0, fontSize: '1.25rem', fontWeight: '800', color: 'var(--fb-text)' }}>
@@ -108,6 +104,7 @@ export default function GroupMomentsPage({ params }) {
 
                 <Link
                     href={`/moments/create?groupId=${groupId}`}
+                    className="hover-btn-blue"
                     style={{
                         display: 'flex',
                         alignItems: 'center',
@@ -119,11 +116,8 @@ export default function GroupMomentsPage({ params }) {
                         textDecoration: 'none',
                         fontWeight: '600',
                         fontSize: '0.9375rem',
-                        transition: 'background 0.15s',
                         whiteSpace: 'nowrap',
                     }}
-                    onMouseEnter={e => e.currentTarget.style.background = 'var(--fb-blue-hover)'}
-                    onMouseLeave={e => e.currentTarget.style.background = 'var(--fb-blue)'}
                 >
                     <CameraIcon />
                     <span>Create</span>

@@ -13,24 +13,14 @@ export default function GroupCard({ group }) {
 
     return (
         <Link href={`/groups/${group._id}`} style={{ textDecoration: 'none', display: 'block' }}>
-            <div className="fb-card group-card" style={{
+            <div className="fb-card group-card hover-lift" style={{
                 display: 'flex',
                 flexDirection: 'column',
                 cursor: 'pointer',
-                transition: 'transform 0.15s, box-shadow 0.15s',
                 background: 'var(--fb-surface)',
                 borderRadius: '12px',
                 overflow: 'hidden',
-            }}
-                onMouseEnter={e => {
-                    e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.4)';
-                }}
-                onMouseLeave={e => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = 'var(--fb-shadow)';
-                }}
-            >
+            }}>
                 {/* Cover Image / Gradient */}
                 <div style={{
                     height: '140px',

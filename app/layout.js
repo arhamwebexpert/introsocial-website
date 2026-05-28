@@ -2,6 +2,7 @@
 import "./globals.css";
 import { AuthProvider } from "@/lib/useAuth";
 import ClientLayoutWrapper from "@/components/ClientLayoutWrapper";
+import { ToastProvider } from "@/components/Toast";
 
 export const metadata = {
   title: "Introsocial",
@@ -13,9 +14,11 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
         <AuthProvider>
-          <ClientLayoutWrapper>
-            {children}
-          </ClientLayoutWrapper>
+          <ToastProvider>
+            <ClientLayoutWrapper>
+              {children}
+            </ClientLayoutWrapper>
+          </ToastProvider>
         </AuthProvider>
       </body>
     </html>

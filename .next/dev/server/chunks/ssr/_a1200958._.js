@@ -117,6 +117,7 @@ function MomentCard({ moment, currentUserId, onLikeToggle, onCommentAdded }) {
     const [submittingComment, setSubmittingComment] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [likePending, setLikePending] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [showComments, setShowComments] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [likeAnimating, setLikeAnimating] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const isLiked = moment.likes?.some((id)=>id === currentUserId || id?._id === currentUserId);
     const likeCount = moment.likes?.length || 0;
     const commentCount = moment.comments?.length || 0;
@@ -124,6 +125,10 @@ function MomentCard({ moment, currentUserId, onLikeToggle, onCommentAdded }) {
     const handleLike = async ()=>{
         if (likePending) return;
         setLikePending(true);
+        if (!isLiked) {
+            setLikeAnimating(true);
+            setTimeout(()=>setLikeAnimating(false), 400);
+        }
         try {
             const res = await fetch(`/api/moments/${moment._id}/like`, {
                 method: 'POST'
@@ -189,7 +194,7 @@ function MomentCard({ moment, currentUserId, onLikeToggle, onCommentAdded }) {
                         children: initials
                     }, void 0, false, {
                         fileName: "[project]/components/MomentCard.jsx",
-                        lineNumber: 93,
+                        lineNumber: 98,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -208,7 +213,7 @@ function MomentCard({ moment, currentUserId, onLikeToggle, onCommentAdded }) {
                                 children: moment.userId?.name || 'Unknown'
                             }, void 0, false, {
                                 fileName: "[project]/components/MomentCard.jsx",
-                                lineNumber: 109,
+                                lineNumber: 114,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -220,19 +225,19 @@ function MomentCard({ moment, currentUserId, onLikeToggle, onCommentAdded }) {
                                 children: timeAgo(moment.createdAt)
                             }, void 0, false, {
                                 fileName: "[project]/components/MomentCard.jsx",
-                                lineNumber: 112,
+                                lineNumber: 117,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/MomentCard.jsx",
-                        lineNumber: 108,
+                        lineNumber: 113,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/MomentCard.jsx",
-                lineNumber: 86,
+                lineNumber: 91,
                 columnNumber: 13
             }, this),
             moment.caption && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -246,7 +251,7 @@ function MomentCard({ moment, currentUserId, onLikeToggle, onCommentAdded }) {
                 children: moment.caption
             }, void 0, false, {
                 fileName: "[project]/components/MomentCard.jsx",
-                lineNumber: 120,
+                lineNumber: 125,
                 columnNumber: 17
             }, this),
             moment.imageUrl && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -265,12 +270,12 @@ function MomentCard({ moment, currentUserId, onLikeToggle, onCommentAdded }) {
                     }
                 }, void 0, false, {
                     fileName: "[project]/components/MomentCard.jsx",
-                    lineNumber: 134,
+                    lineNumber: 139,
                     columnNumber: 21
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/MomentCard.jsx",
-                lineNumber: 133,
+                lineNumber: 138,
                 columnNumber: 17
             }, this),
             (likeCount > 0 || commentCount > 0) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -304,14 +309,14 @@ function MomentCard({ moment, currentUserId, onLikeToggle, onCommentAdded }) {
                                 children: "👍"
                             }, void 0, false, {
                                 fileName: "[project]/components/MomentCard.jsx",
-                                lineNumber: 159,
+                                lineNumber: 164,
                                 columnNumber: 29
                             }, this),
                             likeCount
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/MomentCard.jsx",
-                        lineNumber: 158,
+                        lineNumber: 163,
                         columnNumber: 25
                     }, this),
                     commentCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -331,13 +336,13 @@ function MomentCard({ moment, currentUserId, onLikeToggle, onCommentAdded }) {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/MomentCard.jsx",
-                        lineNumber: 173,
+                        lineNumber: 178,
                         columnNumber: 25
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/MomentCard.jsx",
-                lineNumber: 149,
+                lineNumber: 154,
                 columnNumber: 17
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -346,7 +351,7 @@ function MomentCard({ moment, currentUserId, onLikeToggle, onCommentAdded }) {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/MomentCard.jsx",
-                lineNumber: 190,
+                lineNumber: 195,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -363,24 +368,31 @@ function MomentCard({ moment, currentUserId, onLikeToggle, onCommentAdded }) {
                             color: isLiked ? 'var(--fb-blue)' : undefined
                         },
                         children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(ThumbsUp, {
-                                filled: isLiked
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: likeAnimating ? 'like-bounce' : '',
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(ThumbsUp, {
+                                    filled: isLiked
+                                }, void 0, false, {
+                                    fileName: "[project]/components/MomentCard.jsx",
+                                    lineNumber: 209,
+                                    columnNumber: 25
+                                }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/MomentCard.jsx",
-                                lineNumber: 203,
+                                lineNumber: 208,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 children: isLiked ? 'Liked' : 'Like'
                             }, void 0, false, {
                                 fileName: "[project]/components/MomentCard.jsx",
-                                lineNumber: 204,
+                                lineNumber: 211,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/MomentCard.jsx",
-                        lineNumber: 197,
+                        lineNumber: 202,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -391,26 +403,26 @@ function MomentCard({ moment, currentUserId, onLikeToggle, onCommentAdded }) {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(CommentBubble, {}, void 0, false, {
                                 fileName: "[project]/components/MomentCard.jsx",
-                                lineNumber: 211,
+                                lineNumber: 218,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 children: "Comment"
                             }, void 0, false, {
                                 fileName: "[project]/components/MomentCard.jsx",
-                                lineNumber: 212,
+                                lineNumber: 219,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/MomentCard.jsx",
-                        lineNumber: 207,
+                        lineNumber: 214,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/MomentCard.jsx",
-                lineNumber: 193,
+                lineNumber: 198,
                 columnNumber: 13
             }, this),
             showComments && commentCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -448,7 +460,7 @@ function MomentCard({ moment, currentUserId, onLikeToggle, onCommentAdded }) {
                                 children: cInitials
                             }, void 0, false, {
                                 fileName: "[project]/components/MomentCard.jsx",
-                                lineNumber: 229,
+                                lineNumber: 236,
                                 columnNumber: 33
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -469,7 +481,7 @@ function MomentCard({ moment, currentUserId, onLikeToggle, onCommentAdded }) {
                                         children: c.userId?.name || 'User'
                                     }, void 0, false, {
                                         fileName: "[project]/components/MomentCard.jsx",
-                                        lineNumber: 251,
+                                        lineNumber: 258,
                                         columnNumber: 37
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -481,25 +493,25 @@ function MomentCard({ moment, currentUserId, onLikeToggle, onCommentAdded }) {
                                         children: c.text
                                     }, void 0, false, {
                                         fileName: "[project]/components/MomentCard.jsx",
-                                        lineNumber: 254,
+                                        lineNumber: 261,
                                         columnNumber: 37
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/MomentCard.jsx",
-                                lineNumber: 245,
+                                lineNumber: 252,
                                 columnNumber: 33
                             }, this)
                         ]
                     }, i, true, {
                         fileName: "[project]/components/MomentCard.jsx",
-                        lineNumber: 228,
+                        lineNumber: 235,
                         columnNumber: 29
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/components/MomentCard.jsx",
-                lineNumber: 218,
+                lineNumber: 225,
                 columnNumber: 17
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -524,6 +536,7 @@ function MomentCard({ moment, currentUserId, onLikeToggle, onCommentAdded }) {
                             placeholder: "Write a comment...",
                             value: commentText,
                             onChange: (e)=>setCommentText(e.target.value),
+                            className: "comment-input",
                             style: {
                                 flex: 1,
                                 background: 'var(--fb-surface2)',
@@ -535,16 +548,10 @@ function MomentCard({ moment, currentUserId, onLikeToggle, onCommentAdded }) {
                                 outline: 'none',
                                 transition: 'border-color 0.15s',
                                 fontFamily: 'inherit'
-                            },
-                            onFocus: (e)=>{
-                                e.target.style.borderColor = 'var(--fb-blue)';
-                            },
-                            onBlur: (e)=>{
-                                e.target.style.borderColor = 'transparent';
                             }
                         }, void 0, false, {
                             fileName: "[project]/components/MomentCard.jsx",
-                            lineNumber: 273,
+                            lineNumber: 280,
                             columnNumber: 21
                         }, this),
                         commentText.trim() && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -566,29 +573,29 @@ function MomentCard({ moment, currentUserId, onLikeToggle, onCommentAdded }) {
                             },
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(SendIcon, {}, void 0, false, {
                                 fileName: "[project]/components/MomentCard.jsx",
-                                lineNumber: 312,
+                                lineNumber: 318,
                                 columnNumber: 29
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/MomentCard.jsx",
-                            lineNumber: 294,
+                            lineNumber: 300,
                             columnNumber: 25
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/MomentCard.jsx",
-                    lineNumber: 272,
+                    lineNumber: 279,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/MomentCard.jsx",
-                lineNumber: 265,
+                lineNumber: 272,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/MomentCard.jsx",
-        lineNumber: 84,
+        lineNumber: 89,
         columnNumber: 9
     }, this);
 }

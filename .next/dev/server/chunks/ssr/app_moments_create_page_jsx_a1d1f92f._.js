@@ -71,7 +71,7 @@ const CameraIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$proj
         lineNumber: 16,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
-function CreateMomentPage() {
+function CreateMomentContent() {
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
     const searchParams = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useSearchParams"])();
     const { user, loading } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$useAuth$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useAuth"])();
@@ -141,7 +141,7 @@ function CreateMomentPage() {
                 setError(data.error || 'Failed to post moment');
                 return;
             }
-            router.push(`/groups/${groupId}`);
+            router.push(`/groups/${groupId}/chat`);
         } catch (err) {
             setError(err.message || 'Something went wrong');
         } finally{
@@ -153,7 +153,7 @@ function CreateMomentPage() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                href: groupId ? `/groups/${groupId}` : '/dashboard',
+                href: groupId ? `/groups/${groupId}/chat` : '/dashboard',
                 style: {
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -651,6 +651,68 @@ function CreateMomentPage() {
     }, void 0, true, {
         fileName: "[project]/app/moments/create/page.jsx",
         lineNumber: 95,
+        columnNumber: 9
+    }, this);
+}
+function CreateMomentPage() {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Suspense"], {
+        fallback: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            style: {
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minHeight: '60vh'
+            },
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                style: {
+                    textAlign: 'center'
+                },
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        style: {
+                            width: '40px',
+                            height: '40px',
+                            border: '3px solid var(--fb-blue)',
+                            borderTopColor: 'transparent',
+                            borderRadius: '50%',
+                            animation: 'spin 0.8s linear infinite',
+                            margin: '0 auto 1rem'
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/app/moments/create/page.jsx",
+                        lineNumber: 301,
+                        columnNumber: 21
+                    }, void 0),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        style: {
+                            color: 'var(--fb-text-secondary)',
+                            margin: 0
+                        },
+                        children: "Loading…"
+                    }, void 0, false, {
+                        fileName: "[project]/app/moments/create/page.jsx",
+                        lineNumber: 309,
+                        columnNumber: 21
+                    }, void 0)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/moments/create/page.jsx",
+                lineNumber: 300,
+                columnNumber: 17
+            }, void 0)
+        }, void 0, false, {
+            fileName: "[project]/app/moments/create/page.jsx",
+            lineNumber: 299,
+            columnNumber: 13
+        }, void 0),
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(CreateMomentContent, {}, void 0, false, {
+            fileName: "[project]/app/moments/create/page.jsx",
+            lineNumber: 313,
+            columnNumber: 13
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/app/moments/create/page.jsx",
+        lineNumber: 298,
         columnNumber: 9
     }, this);
 }

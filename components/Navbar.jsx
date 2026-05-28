@@ -115,7 +115,7 @@ export default function Navbar() {
                         left: '50%',
                         transform: 'translateX(-50%)',
                     }} className="navbar-tabs">
-                        <Link href="/dashboard" style={{
+                        <Link href="/dashboard" className={`nav-tab${isHome ? ' nav-tab-active' : ''}`} style={{
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -126,14 +126,10 @@ export default function Navbar() {
                             background: 'transparent',
                             textDecoration: 'none',
                             borderBottom: isHome ? '3px solid var(--fb-blue)' : '3px solid transparent',
-                            transition: 'background 0.15s, color 0.15s',
-                        }}
-                            onMouseEnter={e => { if (!isHome) e.currentTarget.style.background = 'var(--fb-hover)'; }}
-                            onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
-                        >
+                        }}>
                             <HomeIcon filled={isHome} />
                         </Link>
-                        <Link href="/groups/create" style={{
+                        <Link href="/groups/create" className={`nav-tab${isGroups ? ' nav-tab-active' : ''}`} style={{
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -144,14 +140,10 @@ export default function Navbar() {
                             background: 'transparent',
                             textDecoration: 'none',
                             borderBottom: isGroups ? '3px solid var(--fb-blue)' : '3px solid transparent',
-                            transition: 'background 0.15s, color 0.15s',
-                        }}
-                            onMouseEnter={e => { if (!isGroups) e.currentTarget.style.background = 'var(--fb-hover)'; }}
-                            onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
-                        >
+                        }}>
                             <GroupsIcon filled={isGroups} />
                         </Link>
-                        <Link href="/newsfeed" title="News Feed" style={{
+                        <Link href="/newsfeed" title="News Feed" className={`nav-tab${isFeed ? ' nav-tab-active' : ''}`} style={{
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -162,11 +154,7 @@ export default function Navbar() {
                             background: 'transparent',
                             textDecoration: 'none',
                             borderBottom: isFeed ? '3px solid var(--fb-blue)' : '3px solid transparent',
-                            transition: 'background 0.15s, color 0.15s',
-                        }}
-                            onMouseEnter={e => { if (!isFeed) e.currentTarget.style.background = 'var(--fb-hover)'; }}
-                            onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
-                        >
+                        }}>
                             <MomentsIcon filled={isFeed} />
                         </Link>
                     </div>
@@ -198,6 +186,7 @@ export default function Navbar() {
                                 <button
                                     onClick={logout}
                                     title="Sign out"
+                                    className="hover-red"
                                     style={{
                                         display: 'flex',
                                         alignItems: 'center',
@@ -209,10 +198,7 @@ export default function Navbar() {
                                         border: 'none',
                                         cursor: 'pointer',
                                         color: 'var(--fb-text-secondary)',
-                                        transition: 'background 0.15s, color 0.15s',
                                     }}
-                                    onMouseEnter={e => { e.currentTarget.style.background = '#f02849'; e.currentTarget.style.color = '#fff'; }}
-                                    onMouseLeave={e => { e.currentTarget.style.background = 'var(--fb-surface2)'; e.currentTarget.style.color = 'var(--fb-text-secondary)'; }}
                                 >
                                     <LogoutIcon />
                                 </button>
