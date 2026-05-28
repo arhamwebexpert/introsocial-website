@@ -1,8 +1,13 @@
 // app/api/upload/route.js
 import { NextResponse } from 'next/server';
-import { writeFile, mkdir } from 'fs/promises';
-import path from 'path';
+import { v2 as cloudinary } from 'cloudinary';
 import { getCurrentUser } from '@/lib/auth';
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 export async function POST(request) {
     try {
@@ -14,12 +19,10 @@ export async function POST(request) {
 
         if (!file) return NextResponse.json({ error: 'No file provided' }, { status: 400 });
 
-        // Validate it's an image
         if (!file.type.startsWith('image/')) {
             return NextResponse.json({ error: 'Only image files are allowed' }, { status: 400 });
         }
 
-        // Validate size (10MB max)
         if (file.size > 10 * 1024 * 1024) {
             return NextResponse.json({ error: 'File too large. Max 10MB.' }, { status: 400 });
         }
@@ -27,18 +30,18 @@ export async function POST(request) {
         const bytes = await file.arrayBuffer();
         const buffer = Buffer.from(bytes);
 
-        // Build a unique filename: timestamp + original name
-        const ext = path.extname(file.name) || '.jpg';
-        const filename = `${Date.now()}-${Math.random().toString(36).slice(2)}${ext}`;
+        // Upload buffer to Cloudinary (works on serverless — no local filesystem needed)
+        const result = await new Promise((resolve, reject) => {
+            cloudinary.uploader.upload_stream(
+                { folder: 'introsocial', resource_type: 'image' },
+                (error, result) => {
+                    if (error) reject(error);
+                    else resolve(result);
+                }
+            ).end(buffer);
+        });
 
-        // Save to public/uploads so it's served statically
-        const uploadDir = path.join(process.cwd(), 'public', 'uploads');
-        await mkdir(uploadDir, { recursive: true }); // create dir if missing
-        await writeFile(path.join(uploadDir, filename), buffer);
-
-        // Return the public URL
-        const url = `/uploads/${filename}`;
-        return NextResponse.json({ url }, { status: 201 });
+        return NextResponse.json({ url: result.secure_url }, { status: 201 });
     } catch (err) {
         console.error('[UPLOAD ERROR]', err);
         return NextResponse.json({ error: 'Upload failed' }, { status: 500 });
