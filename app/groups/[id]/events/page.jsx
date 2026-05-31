@@ -6,6 +6,7 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/useAuth';
 import CreateEventModal from '@/components/CreateEventModal';
+import { Badge } from '@/components/Primitives';
 
 export default function EventsPage() {
     const { user, loading } = useAuth();
@@ -16,6 +17,7 @@ export default function EventsPage() {
     const [fetching, setFetching] = useState(true);
     const [showCreate, setShowCreate] = useState(false);
     const [summaries, setSummaries] = useState({});
+    const [rsvping, setRsvping] = useState({});
 
     useEffect(() => {
         if (!loading && !user) router.push('/login');
@@ -43,8 +45,33 @@ export default function EventsPage() {
         });
     };
 
+    const getUserRsvp = (event) => {
+        const rsvp = event.rsvps?.find(
+            (r) => r.userId?._id === user?.userId || r.userId?.toString() === user?.userId
+        );
+        return rsvp?.status || null;
+    };
+
+    const handleRsvp = async (eventId, status) => {
+        setRsvping((prev) => ({ ...prev, [eventId]: true }));
+        try {
+            const res = await fetch(`/api/events/${eventId}/rsvp`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status }),
+            });
+            const data = await res.json();
+            if (res.ok) {
+                setEvents((prev) =>
+                    prev.map((e) => e._id === eventId ? { ...e, rsvps: data.rsvps } : e)
+                );
+            }
+        } catch {}
+        finally { setRsvping((prev) => ({ ...prev, [eventId]: false })); }
+    };
+
     const handleJoinChat = (eventId) => {
-        router.push(`/groups/${groupId}/chat`);
+        router.push(`/groups/${groupId}/events/${eventId}/chat`);
     };
 
     const handleSummarize = async (eventId) => {
@@ -89,7 +116,7 @@ export default function EventsPage() {
         <div style={{ maxWidth: '700px', margin: '0 auto' }}>
 
             {/* Header */}
-            <div className="fb-card" style={{ marginBottom: '0.75rem', padding: '0.875rem 1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
+            <div className="fb-card events-header" style={{ marginBottom: '0.75rem', padding: '0.875rem 1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
                 <div>
                     <Link href={`/groups/${groupId}/chat`} className="hover-blue" style={{ color: 'var(--fb-text-secondary)', textDecoration: 'none', fontSize: '0.875rem', fontWeight: '500' }}>
                         ← Back to Chat
@@ -97,7 +124,7 @@ export default function EventsPage() {
                     <h1 style={{ margin: '0.25rem 0 0.125rem', fontSize: '1.25rem', fontWeight: '800', color: 'var(--fb-text)' }}>Events</h1>
                     <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--fb-text-muted)' }}>From threads or created directly</p>
                 </div>
-                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <div className="events-header-actions" style={{ display: 'flex', gap: '0.5rem' }}>
                     <Link
                         href="/moments"
                         className="btn-secondary"
@@ -134,6 +161,8 @@ export default function EventsPage() {
             ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                     {events.map((event) => {
+                        const myRsvp = getUserRsvp(event);
+                        const isGoing = myRsvp === 'going';
                         return (
                             <div key={event._id} className="fb-card" style={{ padding: '1rem' }}>
                                 {/* Top row */}
@@ -141,24 +170,14 @@ export default function EventsPage() {
                                     <div>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '0.25rem' }}>
                                             <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: '700', color: 'var(--fb-text)' }}>{event.title}</h3>
-                                            <span style={{
-                                                fontSize: '0.75rem',
-                                                padding: '2px 8px',
-                                                borderRadius: '12px',
-                                                background: event.visibility === 'private' ? 'rgba(255,201,71,0.12)' : 'rgba(66,183,42,0.12)',
-                                                color: event.visibility === 'private' ? '#ffc947' : 'var(--fb-green)',
-                                                border: `1px solid ${event.visibility === 'private' ? 'rgba(255,201,71,0.25)' : 'rgba(66,183,42,0.25)'}`,
-                                            }}>
-                                                {event.visibility === 'private' ? '🔒 Private' : '🌐 Public'}
-                                            </span>
+                                            <Badge
+                                                emoji={event.visibility === 'private' ? '🔒' : '🌐'}
+                                                tone={event.visibility === 'private' ? 'amber' : 'green'}
+                                            >
+                                                {event.visibility === 'private' ? 'Private' : 'Public'}
+                                            </Badge>
                                             {event.sourceMessageId && (
-                                                <span style={{
-                                                    fontSize: '0.75rem', padding: '2px 8px', borderRadius: '12px',
-                                                    background: 'rgba(24,119,242,0.12)', color: 'var(--fb-blue)',
-                                                    border: '1px solid rgba(24,119,242,0.25)',
-                                                }}>
-                                                    💬 From thread
-                                                </span>
+                                                <Badge emoji="💬" tone="blue">From thread</Badge>
                                             )}
                                         </div>
                                         {event.description && (
@@ -174,24 +193,60 @@ export default function EventsPage() {
                                     <span>👤 {event.createdBy?.name}</span>
                                 </div>
 
+                                {/* RSVP buttons */}
+                                <div className="rsvp-row" style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.75rem' }}>
+                                    {[
+                                        { status: 'going', label: '✅ Going', activeColor: '#25d366' },
+                                        { status: 'maybe', label: '🤔 Maybe', activeColor: '#f7b731' },
+                                        { status: 'not_going', label: '❌ Can\'t go', activeColor: 'var(--fb-red)' },
+                                    ].map(({ status, label, activeColor }) => {
+                                        const isActive = myRsvp === status;
+                                        return (
+                                            <button
+                                                key={status}
+                                                onClick={() => handleRsvp(event._id, status)}
+                                                disabled={rsvping[event._id]}
+                                                style={{
+                                                    flex: 1,
+                                                    fontSize: '0.8125rem',
+                                                    fontWeight: isActive ? '700' : '500',
+                                                    padding: '0.4rem 0.5rem',
+                                                    background: isActive ? activeColor : 'var(--fb-surface2)',
+                                                    color: isActive ? '#fff' : 'var(--fb-text-secondary)',
+                                                    border: `1px solid ${isActive ? activeColor : 'var(--fb-border)'}`,
+                                                    borderRadius: '8px',
+                                                    cursor: rsvping[event._id] ? 'not-allowed' : 'pointer',
+                                                    opacity: rsvping[event._id] ? 0.6 : 1,
+                                                    transition: 'all 0.15s',
+                                                }}
+                                            >
+                                                {label}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+
                                 {/* Join Chat & Summarize buttons */}
                                 <div style={{ display: 'flex', gap: '0.5rem', borderTop: '1px solid var(--fb-border)', paddingTop: '0.75rem' }}>
                                     <button
-                                        onClick={() => handleJoinChat(event._id)}
+                                        onClick={() => isGoing && handleJoinChat(event._id)}
+                                        disabled={!isGoing}
+                                        title={isGoing ? 'Open event chat' : 'RSVP as Going to join the chat'}
                                         className="fb-action-btn hover-btn-blue"
                                         style={{
                                             flex: 1,
                                             fontSize: '0.875rem',
                                             fontWeight: '600',
                                             padding: '0.5rem 1rem',
-                                            background: 'var(--fb-blue)',
-                                            color: '#fff',
-                                            border: 'none',
+                                            background: isGoing ? 'var(--fb-blue)' : 'var(--fb-surface2)',
+                                            color: isGoing ? '#fff' : 'var(--fb-text-muted)',
+                                            border: isGoing ? 'none' : '1px solid var(--fb-border)',
                                             borderRadius: '8px',
-                                            cursor: 'pointer',
+                                            cursor: isGoing ? 'pointer' : 'not-allowed',
+                                            opacity: isGoing ? 1 : 0.6,
                                         }}
                                     >
-                                        💬 Join Chat
+                                        💬 {isGoing ? 'Join Chat' : 'RSVP to Chat'}
                                     </button>
                                     <button
                                         onClick={() => handleSummarize(event._id)}
@@ -237,9 +292,7 @@ export default function EventsPage() {
                                         borderRadius: '8px',
                                         borderLeft: '3px solid var(--fb-blue)',
                                     }}>
-                                        <p style={{ margin: '0 0 0.5rem', fontSize: '0.75rem', fontWeight: '700', color: 'var(--fb-text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                                            Summary
-                                        </p>
+                                        <p className="eyebrow" style={{ margin: '0 0 0.5rem' }}>Summary</p>
                                         <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--fb-text)', lineHeight: '1.5' }}>
                                             {summaries[event._id]}
                                         </p>

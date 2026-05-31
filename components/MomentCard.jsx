@@ -2,6 +2,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Avatar } from '@/components/Primitives';
 
 const ThumbsUp = ({ filled }) => (
     <svg width="20" height="20" viewBox="0 0 24 24" fill={filled ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -48,8 +49,6 @@ export default function MomentCard({ moment, currentUserId, onLikeToggle, onComm
     const likeCount = moment.likes?.length || 0;
     const commentCount = moment.comments?.length || 0;
 
-    const initials = (moment.userId?.name || '?').split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
-
     const handleLike = async () => {
         if (likePending) return;
         setLikePending(true);
@@ -94,22 +93,7 @@ export default function MomentCard({ moment, currentUserId, onLikeToggle, onComm
                 gap: '0.75rem',
                 padding: '0.875rem 1rem 0.5rem',
             }}>
-                {/* Avatar */}
-                <div style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '50%',
-                    background: 'linear-gradient(135deg, #1877f2, #0d47a1)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '0.9375rem',
-                    fontWeight: '700',
-                    color: '#fff',
-                    flexShrink: 0,
-                }}>
-                    {initials}
-                </div>
+                <Avatar name={moment.userId?.name} size={40} variant="gradient" />
                 <div style={{ flex: 1, minWidth: 0 }}>
                     <p style={{ margin: 0, fontWeight: '600', fontSize: '0.9375rem', color: 'var(--fb-text)' }}>
                         {moment.userId?.name || 'Unknown'}
@@ -230,25 +214,9 @@ export default function MomentCard({ moment, currentUserId, onLikeToggle, onComm
                     gap: '0.625rem',
                 }}>
                     {moment.comments.map((c, i) => {
-                        const cInitials = (c.userId?.name || 'U').split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
                         return (
                             <div key={i} style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-start' }}>
-                                <div style={{
-                                    width: '28px',
-                                    height: '28px',
-                                    borderRadius: '50%',
-                                    background: 'var(--fb-surface2)',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontSize: '0.6875rem',
-                                    fontWeight: '700',
-                                    color: 'var(--fb-text)',
-                                    flexShrink: 0,
-                                    marginTop: '2px',
-                                }}>
-                                    {cInitials}
-                                </div>
+                                <Avatar name={c.userId?.name} size={28} variant="flat" />
                                 <div style={{
                                     background: 'var(--fb-surface2)',
                                     borderRadius: '0 12px 12px 12px',

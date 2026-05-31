@@ -1,0 +1,68 @@
+/* IntroSocial UI kit — utility classes & animations.
+   Lifted from the product's app/globals.css. Import colors_and_type.css first. */
+@import url('../../colors_and_type.css');
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100vh; }
+body {
+  background: var(--fb-bg);
+  color: var(--fb-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Buttons ── */
+.btn-primary{background:#1877f2;color:#fff;font-weight:600;padding:.625rem 1rem;border-radius:8px;border:none;cursor:pointer;font-size:.9375rem;transition:background .15s;text-align:center;font-family:inherit;}
+.btn-primary:hover:not(:disabled){background:#166fe5;}
+.btn-primary:active:not(:disabled){transform:scale(.98);}
+.btn-primary:disabled{opacity:.6;cursor:not-allowed;}
+.btn-secondary{background:#3a3b3c;color:#e4e6eb;font-weight:600;padding:.625rem 1rem;border-radius:8px;border:none;cursor:pointer;font-size:.9375rem;transition:background .15s;font-family:inherit;}
+.btn-secondary:hover{background:#4e4f50;}
+.btn-secondary:active{transform:scale(.98);}
+
+/* ── Card ── */
+.fb-card{background:#242526;border-radius:12px;box-shadow:0 1px 2px rgba(0,0,0,.3),0 2px 8px rgba(0,0,0,.2);overflow:hidden;}
+
+/* ── Input ── */
+.fb-input{background:#18191a;border:1px solid #3a3b3c;border-radius:8px;padding:.75rem 1rem;color:#e4e6eb;font-size:1rem;width:100%;transition:border-color .15s,box-shadow .15s;font-family:inherit;display:block;}
+.fb-input:focus{outline:none;border-color:#1877f2;box-shadow:0 0 0 2px rgba(24,119,242,.3);}
+.fb-input::placeholder{color:#8a8d91;}
+
+/* ── Moment action button ── */
+.fb-action-btn{display:flex;align-items:center;gap:.375rem;padding:.5rem 1rem;border-radius:8px;font-size:.9375rem;font-weight:600;color:#b0b3b8;background:transparent;border:none;cursor:pointer;flex:1;justify-content:center;transition:background .15s,color .15s;font-family:inherit;}
+.fb-action-btn:hover{background:#3a3b3c;color:#e4e6eb;}
+.fb-action-btn.liked{color:#1877f2;}
+
+/* ── Hover utilities ── */
+.hover-surface{transition:background .15s;}
+.hover-surface:hover{background:#3a3b3c;}
+.hover-lift{transition:transform .15s ease-out,box-shadow .15s ease-out;}
+.hover-lift:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.4);}
+.hover-blue{transition:color .15s;}
+.hover-blue:hover{color:#1877f2;}
+.hover-red{transition:background .15s,color .15s;}
+.hover-red:hover{background:#f02849;color:#fff;}
+.nav-tab{transition:background .15s;}
+.nav-tab:not(.nav-tab-active):hover{background:#3a3b3c;}
+.hover-scale{transition:transform .2s;}
+.hover-scale:hover{transform:scale(1.05);}
+.hover-chat-link{transition:background .2s,color .2s;}
+.hover-chat-link:hover{background:#3a3f48;color:#e4e6eb;}
+.comment-input:focus{border-color:#1877f2;}
+.chat-text-input:focus{background:#3a3f48;border-color:#1877f2;}
+
+/* ── Keyframes ── */
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes shimmer{0%{background-position:-200% 0;}100%{background-position:200% 0;}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+@keyframes likeBounce{0%{transform:scale(1);}40%{transform:scale(1.4);}70%{transform:scale(.9);}100%{transform:scale(1);}}
+@keyframes slideInMsg{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+@keyframes toastIn{from{opacity:0;transform:translateX(calc(100% + 1.5rem));}to{opacity:1;transform:translateX(0);}}
+.page-enter{animation:fadeInUp .22s ease-out;}
+.chat-msg-enter{animation:slideInMsg .2s ease-out;}
+.like-bounce{animation:likeBounce .35s ease forwards;display:inline-flex;}
+.chat-msg-group:hover .chat-actions{opacity:1 !important;}
+
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:#18191a;}
+::-webkit-scrollbar-thumb{background:#3a3b3c;border-radius:3px;}

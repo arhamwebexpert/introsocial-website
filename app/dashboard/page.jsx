@@ -66,7 +66,7 @@ export default function DashboardPage() {
     if (loading || fetching) {
         return (
             <div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginBottom: '1.25rem' }}>
+                <div className="quick-actions-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginBottom: '1.25rem' }}>
                     <div className="skeleton" style={{ height: '72px', borderRadius: '12px' }} />
                     <div className="skeleton" style={{ height: '72px', borderRadius: '12px' }} />
                 </div>
@@ -94,7 +94,7 @@ export default function DashboardPage() {
     return (
         <div>
             {/* Quick Actions */}
-            <div style={{
+            <div className="quick-actions-grid" style={{
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr',
                 gap: '0.75rem',
@@ -145,7 +145,7 @@ export default function DashboardPage() {
                     }}>
                         <KeyIcon />
                     </div>
-                    <div style={{ flex: 1, minWidth: 0 }}>
+                    <div className="join-group-inner" style={{ flex: 1, minWidth: 0 }}>
                         <p style={{ margin: '0 0 0.35rem', fontWeight: '700', fontSize: '0.9375rem', color: 'var(--fb-text)' }}>Join Group</p>
                         <form onSubmit={handleJoin} style={{ display: 'flex', gap: '0.4rem' }}>
                             <input
@@ -219,7 +219,7 @@ export default function DashboardPage() {
                         display: 'grid',
                         gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
                         gap: '0.75rem',
-                    }}>
+                    }} className="groups-grid">
                         {groups.map((group) => (
                             <GroupCard key={group._id} group={group} />
                         ))}

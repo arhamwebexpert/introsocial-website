@@ -14,36 +14,78 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navi
 ;
 var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature();
 // lib/useAuth.js
-// Simple client hook to fetch + cache current user session
 "use client";
 ;
 ;
 const AuthContext = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createContext"])(null);
+const CHANNEL_NAME = "introsocial_auth";
 function AuthProvider({ children }) {
     _s();
     const [user, setUser] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
+    const channelRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    // Fetch current session from the cookie
+    const fetchMe = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "AuthProvider.useCallback[fetchMe]": async ()=>{
+            try {
+                const r = await fetch("/api/auth/me");
+                const data = await r.json();
+                setUser(data.user || null);
+                return data.user || null;
+            } catch  {
+                setUser(null);
+                return null;
+            }
+        }
+    }["AuthProvider.useCallback[fetchMe]"], []);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "AuthProvider.useEffect": ()=>{
-            fetch("/api/auth/me").then({
-                "AuthProvider.useEffect": (r)=>r.json()
-            }["AuthProvider.useEffect"]).then({
-                "AuthProvider.useEffect": (data)=>{
-                    if (data.user) setUser(data.user);
-                }
-            }["AuthProvider.useEffect"]).catch({
-                "AuthProvider.useEffect": ()=>{}
-            }["AuthProvider.useEffect"]).finally({
+            // Initial session load
+            fetchMe().finally({
                 "AuthProvider.useEffect": ()=>setLoading(false)
             }["AuthProvider.useEffect"]);
+            // Sync across tabs — BroadcastChannel is supported in all modern browsers.
+            // When another tab logs in or out, update this tab's React state immediately
+            // so the cookie and the UI are always in sync.
+            if (typeof BroadcastChannel !== "undefined") {
+                channelRef.current = new BroadcastChannel(CHANNEL_NAME);
+                channelRef.current.onmessage = ({
+                    "AuthProvider.useEffect": ({ data })=>{
+                        if (data.type === "LOGIN") {
+                            setUser(data.user);
+                        } else if (data.type === "LOGOUT") {
+                            setUser(null);
+                        }
+                    }
+                })["AuthProvider.useEffect"];
+            }
+            return ({
+                "AuthProvider.useEffect": ()=>{
+                    channelRef.current?.close();
+                }
+            })["AuthProvider.useEffect"];
         }
     }["AuthProvider.useEffect"], []);
+    // Call this after a successful login — sets state AND tells all other tabs
+    const login = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "AuthProvider.useCallback[login]": (userData)=>{
+            setUser(userData);
+            channelRef.current?.postMessage({
+                type: "LOGIN",
+                user: userData
+            });
+        }
+    }["AuthProvider.useCallback[login]"], []);
     const logout = async ()=>{
         await fetch("/api/auth/logout", {
             method: "POST"
         });
         setUser(null);
+        // Tell all other open tabs to also log out
+        channelRef.current?.postMessage({
+            type: "LOGOUT"
+        });
         router.push("/login");
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AuthContext.Provider, {
@@ -51,16 +93,17 @@ function AuthProvider({ children }) {
             user,
             loading,
             setUser,
+            login,
             logout
         },
         children: children
     }, void 0, false, {
         fileName: "[project]/lib/useAuth.js",
-        lineNumber: 33,
+        lineNumber: 67,
         columnNumber: 5
     }, this);
 }
-_s(AuthProvider, "J17Kp8z+0ojgAqGoY5o3BCjwWms=", false, function() {
+_s(AuthProvider, "l/KL27lYFrcx0h2XcU4fWtYyphc=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
     ];
@@ -803,52 +846,53 @@ function ClientLayoutWrapper({ children }) {
     _s();
     const pathname = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"])();
     const isInGroup = pathname?.match(/^\/groups\/[^/]+$/) || pathname?.match(/^\/groups\/[^/]+\/(chat|events|moments)/);
+    const isAuth = pathname === '/login' || pathname === '/signup';
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
-            !isInGroup && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Navbar$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+            !isInGroup && !isAuth && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Navbar$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/components/ClientLayoutWrapper.jsx",
-                lineNumber: 12,
-                columnNumber: 28
+                lineNumber: 13,
+                columnNumber: 39
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
                 style: {
-                    paddingTop: isInGroup ? '0' : '56px',
+                    paddingTop: isInGroup || isAuth ? '0' : '56px',
                     paddingBottom: '0',
                     minHeight: '100vh',
                     background: 'var(--fb-bg)'
                 },
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     style: {
-                        maxWidth: isInGroup ? '1300px' : '680px',
+                        maxWidth: isInGroup ? '1300px' : isAuth ? '100%' : '680px',
                         margin: '0 auto',
-                        padding: isInGroup ? '0' : '1rem 0.75rem',
+                        padding: isInGroup || isAuth ? '0' : '1rem 0.75rem',
                         height: isInGroup ? '100vh' : 'auto'
                     },
-                    className: isInGroup ? '' : 'fb-main-content',
-                    children: !isInGroup ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: isInGroup || isAuth ? '' : 'fb-main-content',
+                    children: !isInGroup && !isAuth ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "page-enter",
                         children: children
                     }, pathname, false, {
                         fileName: "[project]/components/ClientLayoutWrapper.jsx",
-                        lineNumber: 31,
+                        lineNumber: 32,
                         columnNumber: 25
                     }, this) : children
                 }, void 0, false, {
                     fileName: "[project]/components/ClientLayoutWrapper.jsx",
-                    lineNumber: 21,
+                    lineNumber: 22,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/ClientLayoutWrapper.jsx",
-                lineNumber: 13,
+                lineNumber: 14,
                 columnNumber: 13
             }, this),
-            !isInGroup && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            !isInGroup && !isAuth && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "mobile-bottom-spacer"
             }, void 0, false, {
                 fileName: "[project]/components/ClientLayoutWrapper.jsx",
-                lineNumber: 37,
-                columnNumber: 28
+                lineNumber: 38,
+                columnNumber: 39
             }, this)
         ]
     }, void 0, true);

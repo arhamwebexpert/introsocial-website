@@ -1,0 +1,191 @@
+/* ============================================================
+   IntroSocial — Colors & Type
+   Foundational design tokens extracted from the IntroSocial
+   codebase (arhamwebexpert/introsocial-website, app/globals.css).
+
+   "Private memories for your people."
+
+   IntroSocial is a dark-mode, group-based social app. It runs on
+   TWO coordinated dark palettes:
+     1. FEED  — the Facebook-style shell (dashboard, news feed,
+                groups, events, login). Surfaces lift OUT of a near-
+                black background.
+     2. CHAT  — the WhatsApp-style group chat (a darker, bluer
+                "room" with gradient message bubbles).
+   Import this file first, then layer component styles on top.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* ---------------------------------------------------------
+     1. CORE PALETTE — "Feed" surfaces (FB dark)
+     Near-black canvas; cards/bars are progressively lighter
+     greys. This is the default surface system for everything
+     except the in-group chat room.
+     --------------------------------------------------------- */
+  --fb-bg:        #18191a;  /* app canvas — body background          */
+  --fb-surface:   #242526;  /* cards, navbar, modals (.fb-card)      */
+  --fb-surface2:  #3a3b3c;  /* inputs-on-card, hover, comment bubble */
+  --fb-surface3:  #4e4f50;  /* deepest hover, pressed states         */
+
+  /* ---------------------------------------------------------
+     2. BRAND & SEMANTIC COLOR
+     One brand blue does almost all the work; green = create /
+     success, red = destructive / error.
+     --------------------------------------------------------- */
+  --fb-blue:        #1877f2;  /* primary brand — buttons, links, active nav */
+  --fb-blue-hover:  #166fe5;  /* primary hover (slightly darker)            */
+  --fb-blue-deep:   #0d5dbf;  /* gradient partner for bubbles/avatars       */
+  --fb-green:       #42b72a;  /* "Create new account", join, success        */
+  --fb-green-hover: #36a420;  /* green hover                                 */
+  --fb-red:         #f02849;  /* destructive, error, "End event"            */
+  --wa-green:       #25d366;  /* chat-only accent — promoted-to-event       */
+  --amber:          #ffc947;  /* private/locked badge accent                */
+
+  /* ---------------------------------------------------------
+     3. TEXT
+     A 3-step grey ramp on dark. Primary is off-white (never
+     pure #fff for body); secondary + muted for metadata.
+     --------------------------------------------------------- */
+  --fb-text:            #e4e6eb;  /* primary — headings, body          */
+  --fb-text-secondary:  #b0b3b8;  /* secondary — subtitles, nav idle   */
+  --fb-text-muted:      #8a8d91;  /* muted — timestamps, placeholders  */
+  --on-blue:            #ffffff;  /* text/icons on blue & green fills  */
+
+  /* ---------------------------------------------------------
+     4. BORDERS / DIVIDERS
+     One hairline does nearly everything; it equals surface2.
+     --------------------------------------------------------- */
+  --fb-border:  #3a3b3c;
+  --fb-hover:   #3a3b3c;  /* nav-tab hover fill = border colour */
+
+  /* ---------------------------------------------------------
+     5. CHAT PALETTE — the in-group "room" (WhatsApp style)
+     A separate, darker + bluer surface set used ONLY inside a
+     group chat. Bubbles you send are a blue gradient; bubbles
+     you receive are flat dark.
+     --------------------------------------------------------- */
+  --chat-bg:        #0a0e14;  /* chat room canvas (top of gradient)  */
+  --chat-bg-deep:   #0d1117;  /* bottom of the room gradient         */
+  --chat-surface:   #1c1e22;  /* header, input bar, received bubble  */
+  --chat-surface2:  #2a2f38;  /* input field, chips, hovered action  */
+  --chat-border:    #3a3f48;  /* chat hairline                       */
+
+  /* ---------------------------------------------------------
+     6. GRADIENTS — used literally throughout the product
+     --------------------------------------------------------- */
+  --grad-avatar:  linear-gradient(135deg, #1877f2, #0d47a1);          /* post/comment avatars      */
+  --grad-bubble:  linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%);  /* own chat bubble, send btn */
+  --grad-cover:   linear-gradient(135deg, #1c2d5a 0%, #1877f2 50%, #0d3b8e 100%); /* group cover  */
+
+  /* ---------------------------------------------------------
+     7. RADIUS
+     --------------------------------------------------------- */
+  --fb-radius:      8px;    /* default — buttons, inputs, cards-sm   */
+  --fb-radius-lg:   12px;   /* cards (.fb-card), quick-action tiles  */
+  --radius-pill:    20px;   /* chips, badges, like counter           */
+  --radius-input:   24px;   /* chat & comment text fields            */
+  --radius-bubble:  16px;   /* chat bubbles (one corner tucked to 4) */
+  --radius-circle:  50%;    /* avatars, icon buttons, logo           */
+
+  /* ---------------------------------------------------------
+     8. ELEVATION / SHADOW
+     Soft, near-black, two-layer. Cards barely float; toasts &
+     hovers float more.
+     --------------------------------------------------------- */
+  --fb-shadow:       0 1px 2px rgba(0,0,0,0.3), 0 2px 8px rgba(0,0,0,0.2);  /* card resting */
+  --shadow-bar:      0 2px 4px rgba(0,0,0,0.4);                              /* fixed navbar */
+  --shadow-lift:     0 4px 16px rgba(0,0,0,0.4);                            /* hover-lift   */
+  --shadow-toast:    0 4px 20px rgba(0,0,0,0.5);                            /* toast / pop  */
+  --shadow-bubble:   0 2px 8px rgba(24,119,242,0.4);                        /* blue bubble glow */
+
+  /* ---------------------------------------------------------
+     9. SPACING  (the app works in rem multiples of 4px)
+     --------------------------------------------------------- */
+  --space-1: 0.25rem;   /*  4px */
+  --space-2: 0.5rem;    /*  8px */
+  --space-3: 0.75rem;   /* 12px — the workhorse gap between cards */
+  --space-4: 1rem;      /* 16px — card padding                    */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+
+  /* ---------------------------------------------------------
+     10. MOTION
+     --------------------------------------------------------- */
+  --ease:        ease-out;
+  --dur-fast:    0.15s;   /* hover/color transitions */
+  --dur-base:    0.22s;   /* page enter, toast       */
+
+  /* =========================================================
+     TYPE SYSTEM
+     One family — Inter — across the whole product. Weight and
+     size carry all hierarchy. Monospace appears only for invite
+     codes. Body is never lighter than 400; UI labels are 600.
+     ========================================================= */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Display / brand wordmark ("Introsocial", logo) */
+  --display-size:    1.75rem;   /* 28px */
+  --display-weight:  800;
+  --display-spacing: -0.01em;
+
+  /* Headings */
+  --h1-size: 1.25rem;  --h1-weight: 800;   /* page titles (News Feed, Events) */
+  --h2-size: 1rem;     --h2-weight: 700;   /* card titles, group names        */
+  --h3-size: 0.9375rem;--h3-weight: 600;   /* author names, list rows         */
+
+  /* Body */
+  --body-size:   0.9375rem;  /* 15px — posts, messages, inputs */
+  --body-weight: 400;
+  --body-line:   1.5;
+
+  /* Small / meta */
+  --small-size:  0.8125rem;  /* 13px — descriptions, secondary  */
+  --meta-size:   0.75rem;    /* 12px — timestamps, badges, code */
+
+  /* Interactive label */
+  --label-weight: 600;       /* buttons, nav, action bar        */
+
+  /* Eyebrow (uppercase section labels) */
+  --eyebrow-size:    0.8125rem;
+  --eyebrow-weight:  700;
+  --eyebrow-spacing: 0.05em;
+}
+
+/* ============================================================
+   BASE ELEMENT STYLES
+   ============================================================ */
+html, body {
+  background: var(--fb-bg);
+  color: var(--fb-text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: var(--body-line);
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+
+h1 { font-size: var(--h1-size); font-weight: var(--h1-weight); color: var(--fb-text); margin: 0; }
+h2 { font-size: var(--h2-size); font-weight: var(--h2-weight); color: var(--fb-text); margin: 0; }
+h3 { font-size: var(--h3-size); font-weight: var(--h3-weight); color: var(--fb-text); margin: 0; }
+p  { font-size: var(--body-size); line-height: var(--body-line); margin: 0; }
+
+a  { color: var(--fb-blue); text-decoration: none; }
+
+.eyebrow {
+  font-size: var(--eyebrow-size);
+  font-weight: var(--eyebrow-weight);
+  text-transform: uppercase;
+  letter-spacing: var(--eyebrow-spacing);
+  color: var(--fb-text-secondary);
+}
+
+.mono { font-family: var(--font-mono); }
+
+/* Custom scrollbar (matches the product) */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--fb-bg); }
+::-webkit-scrollbar-thumb { background: var(--fb-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--fb-surface3); }

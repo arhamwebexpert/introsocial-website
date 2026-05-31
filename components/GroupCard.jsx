@@ -24,7 +24,7 @@ export default function GroupCard({ group }) {
                 {/* Cover Image / Gradient */}
                 <div style={{
                     height: '140px',
-                    background: 'linear-gradient(135deg, #1c2d5a 0%, #1877f2 50%, #0d3b8e 100%)',
+                    background: 'var(--grad-cover)',
                     position: 'relative',
                     overflow: 'hidden',
                 }}>

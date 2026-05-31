@@ -6,6 +6,7 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/useAuth';
 import PromoteEventModal from '@/components/PromoteEventModal';
+import { Avatar } from '@/components/Primitives';
 
 export default function ChatPage() {
     const { user, loading } = useAuth();
@@ -253,22 +254,7 @@ export default function ChatPage() {
                                         }}>
                                             {/* Avatar */}
                                             {!isOwn && (
-                                                <div style={{
-                                                    width: '32px',
-                                                    height: '32px',
-                                                    borderRadius: '50%',
-                                                    background: 'linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%)',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center',
-                                                    fontSize: '0.875rem',
-                                                    fontWeight: '700',
-                                                    color: '#fff',
-                                                    flexShrink: 0,
-                                                    boxShadow: '0 2px 4px rgba(0,0,0,0.3)',
-                                                }}>
-                                                    {msg.userId?.name?.[0]?.toUpperCase() || '?'}
-                                                </div>
+                                                <Avatar name={msg.userId?.name} size={32} variant="chat" />
                                             )}
 
                                             <div style={{
@@ -633,21 +619,7 @@ function ThreadPanel({ messageId, replies, onReply, currentUserId }) {
                         alignItems: 'flex-start',
                         marginBottom: '1rem',
                     }}>
-                        <div style={{
-                            width: '28px',
-                            height: '28px',
-                            borderRadius: '50%',
-                            background: 'linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            fontSize: '0.75rem',
-                            fontWeight: '700',
-                            color: '#fff',
-                            flexShrink: 0,
-                        }}>
-                            {r.userId?.name?.[0]?.toUpperCase() || '?'}
-                        </div>
+                        <Avatar name={r.userId?.name} size={28} variant="chat" />
                         <div style={{ flex: 1, minWidth: 0 }}>
                             <span style={{
                                 fontSize: '0.8125rem',
