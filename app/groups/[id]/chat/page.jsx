@@ -19,8 +19,11 @@ export default function ChatPage() {
     const [activeThread, setActiveThread] = useState(null);
     const [replies, setReplies] = useState({});
     const [promoteTarget, setPromoteTarget] = useState(null);
-    const [replyToMessage, setReplyToMessage] = useState(null); // For inline WhatsApp-style replies
+    const [replyToMessage, setReplyToMessage] = useState(null);
     const bottomRef = useRef(null);
+    const messagesContainerRef = useRef(null);
+    // true once user has scrolled away from the bottom
+    const userScrolledUp = useRef(false);
 
     useEffect(() => {
         if (!loading && !user) router.push('/login');
@@ -33,9 +36,19 @@ export default function ChatPage() {
         return () => clearInterval(interval);
     }, [user, groupId]);
 
+    // Only auto-scroll when user is already near the bottom
     useEffect(() => {
-        bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+        if (!userScrolledUp.current) {
+            bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+        }
     }, [messages]);
+
+    const handleMessagesScroll = () => {
+        const el = messagesContainerRef.current;
+        if (!el) return;
+        // Consider "at bottom" if within 150px of the bottom
+        userScrolledUp.current = el.scrollHeight - el.scrollTop - el.clientHeight > 150;
+    };
 
     const fetchMessages = async () => {
         try {
@@ -64,6 +77,7 @@ export default function ChatPage() {
                 setMessages((prev) => [...prev, data.message]);
                 setText('');
                 setReplyToMessage(null);
+                userScrolledUp.current = false; // snap back after own send
             }
         } catch { }
         finally { setSending(false); }
@@ -211,7 +225,10 @@ export default function ChatPage() {
                 </div>
 
                 {/* Messages area - WhatsApp style */}
-                <div style={{
+                <div
+                    ref={messagesContainerRef}
+                    onScroll={handleMessagesScroll}
+                    style={{
                     flex: 1,
                     overflowY: 'auto',
                     padding: '1rem',
@@ -539,12 +556,24 @@ export default function ChatPage() {
                 {/* Hover styles */}
                 <style>{`
                 .chat-msg-group:hover .chat-actions { opacity: 1 !important; }
+                @media (max-width: 768px) {
+                    .thread-panel {
+                        position: fixed !important;
+                        top: 0 !important;
+                        left: 0 !important;
+                        right: 0 !important;
+                        bottom: 0 !important;
+                        width: 100% !important;
+                        z-index: 200;
+                        border-left: none !important;
+                    }
+                }
             `}</style>
             </div> {/* End Main Chat Area */}
 
-            {/* Thread Sidebar Panel */}
+            {/* Thread Sidebar Panel — sidebar on desktop, full-screen overlay on mobile */}
             {activeThread && (
-                <div style={{
+                <div className="thread-panel" style={{
                     width: '320px',
                     borderLeft: '1px solid #2a2f38',
                     background: '#0a0e14',
@@ -584,15 +613,24 @@ function ThreadPanel({ messageId, replies, onReply, currentUserId }) {
     const [replyText, setReplyText] = useState('');
     const [sending, setSending] = useState(false);
     const threadBottomRef = useRef(null);
+    const justSentReply = useRef(false);
+    const prevMessageId = useRef(null);
 
     useEffect(() => {
-        threadBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, [replies]);
+        // Scroll to bottom only when opening a different thread or after user sends a reply
+        const threadChanged = prevMessageId.current !== messageId;
+        if (threadChanged || justSentReply.current) {
+            threadBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+            prevMessageId.current = messageId;
+            justSentReply.current = false;
+        }
+    }, [replies, messageId]);
 
     const handleReply = async (e) => {
         e.preventDefault();
         if (!replyText.trim()) return;
         setSending(true);
+        justSentReply.current = true;
         await onReply(messageId, replyText.trim());
         setReplyText('');
         setSending(false);
