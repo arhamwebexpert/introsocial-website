@@ -191,7 +191,7 @@ export default function ChatPage() {
                     <div style={{ display: 'flex', gap: '0.5rem' }}>
                         <Link
                             href={`/groups/${groupId}/moments`}
-                            className="hover-chat-link"
+                            className="hover-chat-link chat-header-btn"
                             style={{
                                 fontSize: '0.875rem',
                                 background: '#2a2f38',
@@ -201,13 +201,16 @@ export default function ChatPage() {
                                 textDecoration: 'none',
                                 fontWeight: '600',
                                 border: '1px solid #3a3f48',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.375rem',
                             }}
                         >
-                            📸 Moments
+                            📸 <span className="chat-header-btn-label">Moments</span>
                         </Link>
                         <Link
                             href={`/groups/${groupId}/events`}
-                            className="hover-chat-link"
+                            className="hover-chat-link chat-header-btn"
                             style={{
                                 fontSize: '0.875rem',
                                 background: '#2a2f38',
@@ -217,9 +220,12 @@ export default function ChatPage() {
                                 textDecoration: 'none',
                                 fontWeight: '600',
                                 border: '1px solid #3a3f48',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.375rem',
                             }}
                         >
-                            📅 Events
+                            📅 <span className="chat-header-btn-label">Events</span>
                         </Link>
                     </div>
                 </div>
@@ -566,6 +572,14 @@ export default function ChatPage() {
                         width: 100% !important;
                         z-index: 200;
                         border-left: none !important;
+                    }
+                }
+                @media (max-width: 480px) {
+                    .chat-header-btn-label { display: none !important; }
+                    .chat-header-btn {
+                        padding: 0.5rem !important;
+                        min-width: 36px;
+                        justify-content: center;
                     }
                 }
             `}</style>
